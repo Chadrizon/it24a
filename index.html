@@ -48,12 +48,12 @@ function addTaskItem(taskText){
 const editButton = createEditButton(li, taskSpan);
     li.appendChild(editButton);
 
+//call createDeleteButton
+   const deleteButton = createDeleteButton(li);
+    li.appendChild(deleteButton);
 
-   
+
 }
-
-
-
 
 function createDoneButton(li){   
     const doneButton = document.createElement("button");
@@ -96,10 +96,21 @@ function handedClick(li){
     }
 }
 
+function createDeleteButton(li) {
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.style.marginLeft = "8px";
+    deleteButton.onclick = () => handleDeleteClick(li); 
+        
+    return deleteButton;
+}
+
+function handleDeleteClick(li){
+    li.remove();
+    alert("Task deleted.");
 
 
-
-
+}
 </script>
 
 </body> 
