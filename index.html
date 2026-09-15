@@ -39,16 +39,20 @@ function addTaskItem(taskText){
 
     document.getElementById("tasklist").appendChild(li);
 
-
+    // call createDoneButton
     const doneButton = createDoneButton(li);
     li.appendChild(doneButton);
 
-    const editButton = createEditButton(li, taskSpan);
-    li.appendChild(editButton);
+    
 
-    const deleteButton = createDeleteButton(li);
-    li.appendChild(deleteButton);
+
+
+
+   
 }
+
+
+
 
 function createDoneButton(li){   
     const doneButton = document.createElement("button");
@@ -69,42 +73,9 @@ function createDoneButton(li){
     
 }
 
-function createEditButton(li, taskSpan) {
-    const editButton = document.createElement("button");
-    editButton.textContent = "Edit";
-    editButton.style.marginLeft = "8px";
-    editButton.onclick = () => handedClick(li);
-
-    return editButton;
-}
-
-function handedClick(li){
-    const currentText = li.firstChild.textContent.trim();
-    const newText = prompt("Edit your task:", currentText);
-
-    if (newText !== null && newText.trim() !== "") {
-        li.firstChild.textContent = newText.trim();
-        alert(" Updated task");
-
-    } else {
-        alert(" No changes made.");
-    }
-}
 
 
-function createDeleteButton(li) {
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.style.marginLeft = "8px";
-    deleteButton.onclick = () => handleDeleteClick(li); 
-        
-    return deleteButton;
-}
 
-function handleDeleteClick(li){
-    li.remove();
-    alert("Task deleted.");
-}
 
 </script>
 
