@@ -32,33 +32,78 @@ S<!DOCTYPE html>
 <script>
 
     function initMap(mapDataUrl) {
-        //Render Map
-        const map = L.map('map').setView([8.360,124.868], 17);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-        }).addTo(map);
+    // Initialize the map
+    const map = L.map('map').setView([8.360, 124.868], 17);
 
-        //Render Pins
-        fetch(mapDataUrl)
-        .then(response=>response.json())
-        .then(data=>{
-            data.forEach(pin=>{
-                const marker = L.marker([pin.lat,pin.lng]).addTo(map);
-                const image = `<img src='${pin.img}' class="popup-image">`;
-                marker.bindPopup(`
-                ${pin.title}<vbr>
-                    <hr> 
-                    ${image}
-                    `);
+    // OpenStreetMap layer
+    const openStreetMap = L.tileLayer(
+        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+            maxZoom: 19,
+            attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }
+    );
+
+    // Satellite layer
+    const satellite = L.tileLayer(
+        'https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        {
+            attribution:
+                'Tiles &copy; Esri, Maxar, Earthstar Geographics, and the GIS User Community'
+        }
+    );
+
+    // Add default layer
+    openStreetMap.addTo(map);
+
+    // Layer control
+    const baseMaps = {
+        "OpenStreetMap": openStreetMap,
+        "Satellite": satellite
+    };
+
+    L.control.layers(baseMaps).addTo(map);
+
+    // Load pins from JSON
+    fetch(mapDataUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
+            }
+
+            return response.json();
+        })
+        .then(data => {
+            if (!Array.isArray(data)) {
+                throw new Error("Map data must be a JSON array.");
+            }
+
+            data.forEach(pin => {
+                const marker = L.marker([
+                    Number(pin.lat),
+                    Number(pin.lng)
+                ]).addTo(map);
+
+                const popupContent = `
+                    <h3>${pin.title}</h3>
+                    <hr>
+                    <img
+                        src="${pin.img}"
+                        class="popup-image"
+                        alt="${pin.title}"
+                    >
+                `;
+
+                marker.bindPopup(popupContent);
             });
-            
-            
+        })
+        .catch(error => {
+            console.error("Error loading map data:", error);
         });
+}
 
-    }
-
-    initMap('campus-Map.json');
+initMap('campus-Map.json');
     
 
 </script>
