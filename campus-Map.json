@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Student Welfare and Development Center",
+        "title": "SWDC",
+        "lat": 8.360176,
+        "lng": 124.867541,
+        "img": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExemJndmxhZ2RmZmZ3ZXdpdHpkb3VoZ2Q3ZGd3YjI1cmRicnp5dzdsMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xT8qBvH1pAhtfSx52U/giphy.gif"
+    },
+    {
+        "name": "NBSC Covered Court",
+        "title": "NBSC CC",
+        "lat": 8.359992,
+        "lng": 124.868861,
+        "img": "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExajJoMnBsM3l1dnp2eHQ2ZGlweno0ejM2bjdqeHZoZ2VxcHVxNjN4dyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/iPg2OZbNXc7uM/giphy.gif"
+}
+]
