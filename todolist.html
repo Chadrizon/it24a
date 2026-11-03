@@ -7,17 +7,17 @@
 </head>
 <body>
 <h1> Todo list </h1>
- <input type="text"
+    <input type="text"
         id="taskInput"
         placeholder="Add a task"
-   />
-   <button onclick="addTask()">Add Task</button>
-   <ul id="tasklist">Your task go here ...</ul>
+    />
+    <button onclick="addTask()">Add Task</button>
+    <ul id="tasklist">Your task go here ...</ul>
 
 
     <script>
 
- function getTaskTest(){
+    function getTaskTest(){
     const input = document.getElementById("taskInput");
     const text = input.value.trim();
 
@@ -44,12 +44,12 @@ function addTaskItem(taskText){
     li.appendChild(doneButton);
 
     // call createEditButton
- 
+
 const editButton = createEditButton(li, taskSpan);
     li.appendChild(editButton);
 
 //call createDeleteButton
-   const deleteButton = createDeleteButton(li);
+    const deleteButton = createDeleteButton(li);
     li.appendChild(deleteButton);
 
 
